@@ -759,3 +759,12 @@ h2.price {
     background-image: none;
     background-color: #df5c39;
 }
+
+.communication-channel{
+	padding-top: 5px;
+}
+
+.communication-channel span, .communication-channel a, .communication-channel i{
+	font-size: 16px;
+	color: #eb0780;
+}
