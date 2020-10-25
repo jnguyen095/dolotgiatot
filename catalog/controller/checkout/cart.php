@@ -220,7 +220,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->load->model('setting/extension');
 
 			$data['modules'] = array();
-			
+
+			/*
 			$files = glob(DIR_APPLICATION . '/controller/extension/total/*.php');
 
 			if ($files) {
@@ -231,7 +232,7 @@ class ControllerCheckoutCart extends Controller {
 						$data['modules'][] = $result;
 					}
 				}
-			}
+			} */
 
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');

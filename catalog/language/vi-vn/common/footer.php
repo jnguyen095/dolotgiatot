@@ -14,4 +14,4 @@ $_['text_account']      = 'Tài khoản của tôi';
 $_['text_order']        = 'Lịch sử đơn hàng';
 $_['text_wishlist']     = 'Danh sách yêu thích';
 $_['text_newsletter']   = 'Thư thông báo';
-$_['text_powered']      = 'Bản quyền thuộc <a href="http://thietkewebpn.com">Thiết kế web phạm nguyễn</a><br /> %s &copy; %s';
+$_['text_powered']      = 'Bản quyền %s &copy; %s';

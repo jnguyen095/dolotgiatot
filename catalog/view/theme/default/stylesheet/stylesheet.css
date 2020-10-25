@@ -1,5 +1,5 @@
 body {
-	font-family: 'Open Sans', sans-serif;
+	font-family: Roboto, Helvetica, Arial, sans-serif; /*'Open Sans', sans-serif;*/
 	font-weight: 400;
 	color: #666;
 	font-size: 12px;
@@ -192,10 +192,10 @@ div.required .control-label:before {
 }
 /* menu */
 #menu {
-	background-color: #229ac8;
-	background-image: linear-gradient(to bottom, #23a1d1, #1f90bb);
+	background-color: #eb0780;
+	background-image: linear-gradient(to bottom, #eb0780, #ce026e);
 	background-repeat: repeat-x;
-	border-color: #1f90bb #1f90bb #145e7a;
+	border-color: #d70072 #d70072 #ba0063;
 	min-height: 40px;
 }
 #menu .nav > li > a {
@@ -204,18 +204,20 @@ div.required .control-label:before {
 	padding: 10px 15px 10px 15px;
 	min-height: 15px;
 	background-color: transparent;
+	text-transform: uppercase;
 }
 #menu .nav > li > a:hover, #menu .nav > li.open > a {
 	background-color: rgba(0, 0, 0, 0.1);
 }
 #menu .dropdown-menu {
 	padding-bottom: 0;
+	min-width: 300px;
 }
 #menu .dropdown-inner {
-	display: table;
+	/*display: table;*/
 }
 #menu .dropdown-inner ul {
-	display: table-cell;
+	/*display: table-cell;*/
 }
 #menu .dropdown-inner a {
 	min-width: 160px;
@@ -628,20 +630,33 @@ h2.price {
 	border: none;
 	display: inline-block;
 	float: left;
-	background-color: #eee;
-	color: #888;
+	background-color: #f37bba;
+	color: #fff;
 	line-height: 38px;
 	font-weight: bold;
 	text-align: center;
 	text-transform: uppercase;
 }
+
+.btn-dolotgiatot{
+	background-color: #f37bba !important;
+	background-image: linear-gradient(to bottom, #f37bba, #f37bba);
+	background-repeat: repeat-x;
+	border-color: #f37bba #f37bba #f37bba;
+	min-height: 40px;
+}
+.btn-dolotgiatot:hover{
+	color: #fff;
+	background-color: #eb0780;
+}
+
 .product-thumb .button-group button + button {
 	width: 20%;
 	border-left: 1px solid #ddd;
 }
 .product-thumb .button-group button:hover {
-	color: #444;
-	background-color: #ddd;
+	color: #fff;
+	background-color: #eb0780;
 	text-decoration: none;
 	cursor: pointer;
 }
