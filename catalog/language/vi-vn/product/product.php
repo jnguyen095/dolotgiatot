@@ -1,5 +1,6 @@
 <?php
 // Text
+$_['text_product']       = 'Sản Phẩm';
 $_['text_search']       = 'Tìm kiếm';
 $_['text_brand']        = 'Thương hiệu';
 $_['text_manufacturer'] = 'Hãng sản xuất:';
