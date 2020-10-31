@@ -5,11 +5,15 @@
       {% endfor %} </div>
   </div>
   <div class="swiper-pagination slideshow{{ module }}"></div>
+  {% if banners|length > 1 %}
   <div class="swiper-pager">
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
+  {% endif %}
 </div>
+
+{% if banners|length > 1 %}
 <script type="text/javascript"><!--
 $('#slideshow{{ module }}').swiper({
 	mode: 'horizontal',
@@ -24,3 +28,4 @@ $('#slideshow{{ module }}').swiper({
 	loop: true
 });
 --></script>
+{% endif %}
