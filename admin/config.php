@@ -4,8 +4,8 @@ define('HTTP_SERVER', 'http://localhost/dolotgiatot/admin/');
 define('HTTP_CATALOG', 'http://localhost/dolotgiatot/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://localhost/dolotgiatot/admin/');
-define('HTTPS_CATALOG', 'http://localhost/dolotgiatot/');
+define('HTTPS_SERVER', 'https://localhost/dolotgiatot/admin/');
+define('HTTPS_CATALOG', 'https://localhost/dolotgiatot/');
 
 // DIR
 define('DIR_APPLICATION', 'D:/xampp/htdocs/dolotgiatot/admin/');

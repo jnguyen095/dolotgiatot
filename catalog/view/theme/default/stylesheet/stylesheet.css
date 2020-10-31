@@ -673,7 +673,7 @@ h2.price {
 	width: 20%;
 	border-left: 1px solid #ddd;
 }
-.product-thumb .button-group button:hover {
+.product-thumb .button-group button:hover,.button-group button:visited  .button-group button:active{
 	color: #fff;
 	background-color: #eb0780;
 	text-decoration: none;
