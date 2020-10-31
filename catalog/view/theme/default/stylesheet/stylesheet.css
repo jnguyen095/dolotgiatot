@@ -192,10 +192,10 @@ div.required .control-label:before {
 }
 /* menu */
 #menu {
-	background-color: #eb0780;
-	background-image: linear-gradient(to bottom, #eb0780, #ce026e);
+	background-color: #a96da9;
+	background-image: linear-gradient(to bottom, #924692, #CF72CF);
 	background-repeat: repeat-x;
-	border-color: #d70072 #d70072 #ba0063;
+	border-color: #CF72CF #CF72CF #CF72CF;
 	min-height: 40px;
 }
 #menu .nav > li > a {
@@ -630,12 +630,25 @@ h2.price {
 	border: none;
 	display: inline-block;
 	float: left;
-	background-color: #f37bba;
+	background-color: #CF72CF;
 	color: #fff;
 	line-height: 38px;
 	font-weight: bold;
 	text-align: center;
 	text-transform: uppercase;
+}
+
+.ajax-load{
+	background-image: url('../image/loading.gif');
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position-x: 50%;
+	text-align: center;
+}
+
+.not-available{
+	color: #FFA500;
+	font-size: 15px;
 }
 
 .btn-dolotgiatot{
@@ -645,6 +658,12 @@ h2.price {
 	border-color: #f37bba #f37bba #f37bba;
 	min-height: 40px;
 }
+
+.dropdown-menu li > a:hover, #menu .see-all:hover, #menu .see-all:focus{
+	background-color: #CF72CF;
+	background-image: linear-gradient(to bottom, #CF72CF, #CF72CF);
+}
+
 .btn-dolotgiatot:hover{
 	color: #fff;
 	background-color: #eb0780;
