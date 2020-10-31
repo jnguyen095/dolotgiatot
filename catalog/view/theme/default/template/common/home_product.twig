@@ -1,0 +1,89 @@
+<h3>{{ text_product }}</h3>
+<div class="row product-infinite">
+    {% for product in products %}
+        <div class="product-layout col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="product-thumb transition">
+                <div class="image"><a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a></div>
+                <div class="caption">
+                    <h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
+                    <p>{{ product.description }}</p>
+                    {% if product.rating %}
+                        <div class="rating">
+                            {% for i in 1..5 %}
+                                {% if product.rating < i %}
+                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                {% else %}
+                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if product.price %}
+                        <p class="price">
+                            {% if not product.special %}
+                                {{ product.price }}
+                            {% else %}
+                                <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+                            {% endif %}
+                            {% if product.tax %}
+                                <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+                            {% endif %}
+                        </p>
+                    {% endif %}
+                </div>
+                <div class="button-group">
+                    <button type="button" onclick="cart.add('{{ product.product_id }}');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span></button>
+                    <button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i></button>
+                    <button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i></button>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <input type="hidden" id="page" value="1">
+</div>
+<div class="row ajax-load" style="display:none;"></div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var isLoading = false;
+        var _currentPage = 0;
+        $(window).scroll(function(){
+            $(".ajax-load").hide();
+            var footerHeight = $("footer").height();
+            if ((window.innerHeight + window.scrollY) + footerHeight >= document.body.offsetHeight && !isLoading) {
+                $(".ajax-load").show();
+                var page = $("#page").val();
+                isLoading = true;
+                console.log(_currentPage + ',' + page);
+                if(_currentPage != page){
+                    var url = "index.php?route=common/home_product_ajax";
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        data: {'page': page},
+                        success: function(response){
+                            $('.ajax-load').hide();
+                            $(".product-layout:last").after(response).show().fadeIn("slow");
+                            isLoading = false;
+                            _currentPage = page;
+                            if(response != null && response != undefined && response.length > 10){
+                                $("#page").val(parseInt(page) + 1);
+                            } else {
+                                if($(".not-available").length < 1){
+                                    $(".product-infinite:last").after("<div class='row text-center'><h3 class='not-available'>-- Cảm ơn đã ghé thăm --</h3></div>").show().fadeIn("slow");
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    $('.ajax-load').hide();
+                    if($(".not-available").length < 1){
+                        $(".product-infinite:last").after("<div class='row text-center'><h3 class='not-available'>-- Cảm ơn đã ghé thăm --</h3></div>").show().fadeIn("slow");
+                    }
+
+                }
+
+            }
+
+        });
+    });
+</script>
