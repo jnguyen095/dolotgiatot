@@ -272,6 +272,39 @@ class ModelCatalogProduct extends Model {
 		return $product_data;
 	}
 
+    /**
+     * Load product from home page
+     * @param $limit
+     * @return mixed
+     */
+    public function getInfinityProducts($data) {
+        $product_data = $this->cache->get('product.home.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $this->config->get('config_customer_group_id') . '.' . (int)$data['start'] . '.' . (int)$data['limit']);
+
+        if (!$product_data) {
+            $sql = "SELECT p.product_id FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY p.date_added DESC ";
+            if (isset($data['start']) || isset($data['limit'])) {
+                if ($data['start'] < 0) {
+                    $data['start'] = 0;
+                }
+
+                if ($data['limit'] < 1) {
+                    $data['limit'] = 20;
+                }
+
+                $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+            }
+
+            $query = $this->db->query($sql);
+            foreach ($query->rows as $result) {
+                $product_data[$result['product_id']] = $this->getProduct($result['product_id']);
+            }
+
+            $this->cache->set('product.home.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $this->config->get('config_customer_group_id') . '.' . (int)$data['start'] . '.' . (int)$data['limit'], $product_data);
+        }
+
+        return $product_data;
+    }
+
 	public function getPopularProducts($limit) {
 		$product_data = $this->cache->get('product.popular.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $this->config->get('config_customer_group_id') . '.' . (int)$limit);
 	
