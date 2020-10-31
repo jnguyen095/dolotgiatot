@@ -3,7 +3,7 @@
 define('HTTP_SERVER', 'http://localhost/dolotgiatot/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://localhost/dolotgiatot/');
+define('HTTPS_SERVER', 'https://localhost/dolotgiatot/');
 
 // DIR
 define('DIR_APPLICATION', 'D:/xampp/htdocs/dolotgiatot/catalog/');
