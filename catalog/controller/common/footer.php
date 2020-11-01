@@ -57,6 +57,7 @@ class ControllerCommonFooter extends Controller {
 		}
 
 		$data['scripts'] = $this->document->getScripts('footer');
+        $data['telephone'] = $this->config->get('config_telephone');
 		
 		return $this->load->view('common/footer', $data);
 	}
