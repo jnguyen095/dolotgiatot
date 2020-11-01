@@ -15,3 +15,4 @@ $_['text_order']        = 'Lịch sử đơn hàng';
 $_['text_wishlist']     = 'Danh sách yêu thích';
 $_['text_newsletter']   = 'Thư thông báo';
 $_['text_powered']      = 'Bản quyền %s &copy; %s';
+$_['text_product']                 = 'Sản phẩm';

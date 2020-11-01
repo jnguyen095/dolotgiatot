@@ -7,8 +7,7 @@ class ControllerCommonHomeProduct extends Controller {
         $limit['limit'] = 12;
 
         $data = $this->loadProductPaging($limit);
-        $data['text_product'] = $this->language->get('text_product');
-
+        $data['text_product'] =  $this->language->get('text_product');
         $data['store_url'] = HTTP_SERVER;
 
         return $this->load->view('common/home_product', $data);

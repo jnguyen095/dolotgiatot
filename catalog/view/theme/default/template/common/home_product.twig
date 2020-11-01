@@ -53,7 +53,6 @@
                 $(".ajax-load").show();
                 var page = $("#page").val();
                 isLoading = true;
-                console.log(_currentPage + ',' + page);
                 if(_currentPage != page){
                     var url = "index.php?route=common/home_product_ajax";
                     $.ajax({
