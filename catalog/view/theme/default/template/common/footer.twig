@@ -51,7 +51,18 @@
       </div>
     </div>
     <hr>
-    <p>{{ powered }}</p>
+    <div class="row">
+      <div class="col-sm-6"><p>{{ powered }}</p></div>
+      <div class="col-sm-6 text-right">
+        <div class="pull-right communication-channel-bottom">
+          <ul class="list-inline ">
+            <li><a href="tel:{{ telephone }}"><span class="hidden-xs hidden-sm hidden-md">Liên hệ với chúng tôi: <i class="fa fa-phone"></i></span>{{ telephone }}</a> </li>
+            <li><a href="http://zalo.me/{{ telephone }}"><i class="fa fa-zalo-white"></i></a></li>
+            <li><a href="https://www.facebook.com/%C4%90%E1%BB%93-l%C3%B3t-gi%C3%A1-s%E1%BB%89-V%C3%A2n-Anh-103836747787793/"><i class="fa fa-face-white"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>
 {% for script in scripts %}

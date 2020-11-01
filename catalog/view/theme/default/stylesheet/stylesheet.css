@@ -263,10 +263,10 @@ div.required .control-label:before {
 	color: #FFF;
 	padding: 2px 18px;
 	float: right;
-	background-color: #229ac8;
-	background-image: linear-gradient(to bottom, #23a1d1, #1f90bb);
+	background-color: #401540;
+	background-image: linear-gradient(to bottom, #401540, #924692);
 	background-repeat: repeat-x;
-	border-color: #1f90bb #1f90bb #145e7a;
+	border-color: #401540 #401540 #401540;
 }
 #menu .btn-navbar:hover, #menu .btn-navbar:focus, #menu .btn-navbar:active, #menu .btn-navbar.disabled, #menu .btn-navbar[disabled] {
 	color: #ffffff;
@@ -598,14 +598,24 @@ h2.price {
 }
 .product-thumb .price {
 	color: #444;
+	position: absolute;
+	bottom: 77px;
+	font-weight: 600;
+	font-size: 16px;
 }
 .product-thumb .price-new {
 	font-weight: 600;
+	font-size: 16px;
 }
 .product-thumb .price-old {
 	color: #999;
 	text-decoration: line-through;
 	margin-left: 10px;
+	font-weight: 100;
+	font-size: 14px;
+}
+.product-layout:hover .product-thumb{
+	border: solid 1px #CF72CF;
 }
 .product-thumb .price-tax {
 	color: #999;
@@ -957,4 +967,45 @@ h2.price {
 	}
 }
 
+.fa-zalo-white{
+	background-image: url('../image/zalo_1.png');
+	width: 30px;
+	height: 30px;
+	vertical-align: bottom;
+	background-color: #ffffff;
+}
+
+.fa-face-white{
+	background-image: url('../image/face-1.png');
+	width: 30px;
+	height: 30px;
+	vertical-align: bottom;
+	background-color: #ffffff;
+}
+
+.fa-zalo{
+	background-image: url('../image/zalo_icon.png');
+	width: 24px;
+	height: 24px;
+	vertical-align: bottom;
+	background-color: #ffffff;
+}
+.fa-face{
+	background-image: url('../image/face_icon.png');
+	width: 24px;
+	height: 24px;
+	vertical-align: bottom;
+	background-color: #ffffff;
+}
+
+.communication-channel-bottom{
+	margin-top: -10px;
+}
+
+.communication-channel-bottom a{
+	font-size: 16px;
+	font-weight: 700;
+	color: #FFFF00;
+	vertical-align: middle;
+}
 
