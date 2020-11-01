@@ -1,3 +1,3 @@
 <?php
 // Text
-$_['text_all'] = 'Thấy tất cả';
+$_['text_all'] = 'Xem tất cả';

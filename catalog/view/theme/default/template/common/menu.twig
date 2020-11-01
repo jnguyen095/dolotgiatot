@@ -8,17 +8,31 @@
       <ul class="nav navbar-nav">
         {% for category in categories %}
         {% if category.children %}
-        <li class="dropdown"><a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }}</a>
-          <div class="dropdown-menu">
-            <div class="dropdown-inner"> {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
-              <ul class="list-unstyled">
-                {% for child in children %}
-                <li><a href="{{ child.href }}">{{ child.name }}</a></li>
-                {% endfor %}
-              </ul>
-              {% endfor %}</div>
-            <a href="{{ category.href }}" class="see-all">{{ text_all }} {{ category.name }}</a> </div>
-        </li>
+          <li class="dropdown"><a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }}</a>
+            <div class="dropdown-menu">
+              <div class="dropdown-inner"> {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+                <ul class="list-unstyled">
+                  {% for child in children %}
+                      {% if child.children %}
+                          <li class="dropdown menu-level2"><a href="{{ child.href }}" class="dropdown-toggle has-child" data-toggle="dropdown">{{ child.name }}</a>
+                              <div class="dropdown-menu-level3">
+                                  <div class="dropdown-inner">
+                                      <ul class="list-unstyled">
+                                          {% for child3 in child.children %}
+                                              <li><a href="{{ child3.href }}">{{ child3.name }}</a></li>
+                                          {% endfor %}
+                                      </ul>
+                                  </div>
+                              </div>
+                          </li>
+                      {% else %}
+                        <li><a href="{{ child.href }}">{{ child.name }}</a></li>
+                      {% endif %}
+                  {% endfor %}
+                </ul>
+                {% endfor %}</div>
+              <a href="{{ category.href }}" class="see-all">{{ text_all }}: {{ category.name }}</a> </div>
+          </li>
         {% else %}
         <li><a href="{{ category.href }}">{{ category.name }}</a></li>
         {% endif %}
@@ -27,4 +41,4 @@
     </div>
   </nav>
 </div>
-{% endif %} 
+{% endif %}

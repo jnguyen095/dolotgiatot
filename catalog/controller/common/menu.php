@@ -25,9 +25,20 @@ class ControllerCommonMenu extends Controller {
 						'filter_sub_category' => true
 					);
 
+					// Level 3
+                    $children_data3 = array();
+                    $children3 = $this->model_catalog_category->getCategories($child['category_id']);
+                    foreach ($children3 as $child3) {
+                        $children_data3[] = array(
+                            'name'  => $child3['name'],
+                            'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']. '_' .$child3['category_id'] , true)
+                        );
+                    }
+
 					$children_data[] = array(
 						'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
-						'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
+						'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'], true),
+                        'children' => $children_data3
 					);
 				}
 
@@ -36,7 +47,7 @@ class ControllerCommonMenu extends Controller {
 					'name'     => $category['name'],
 					'children' => $children_data,
 					'column'   => $category['column'] ? $category['column'] : 1,
-					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
+					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'], true)
 				);
 			}
 		}

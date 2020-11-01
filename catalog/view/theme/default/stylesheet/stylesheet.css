@@ -787,3 +787,32 @@ h2.price {
 	font-size: 16px;
 	color: #eb0780;
 }
+
+.menu-level2:hover .dropdown-menu-level3{
+	display: block;
+	border: 1px solid rgba(0,0,0,.15);
+	box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	border-radius: 0px 4px 4px 0px;
+}
+
+.dropdown-menu-level3{
+	display: none;
+	position: absolute;
+	left: 100%;
+	top:0px;
+	background: #fff;
+	width: 260px;
+}
+
+.has-child:after{
+	content: "\00BB";
+	text-align: right;
+	float: right;
+	color: #eb0780;
+}
+
+.menu-level2:hover, .menu-level2:hover .has-child:after{
+	color:#ffffff;
+	background-color: #CF72CF;
+	background-image: linear-gradient(to bottom, #CF72CF, #CF72CF);
+}
