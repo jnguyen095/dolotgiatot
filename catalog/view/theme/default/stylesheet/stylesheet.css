@@ -133,14 +133,14 @@ div.required .control-label:before {
 	margin-bottom: 10px;
 }
 #search .input-lg {
-	height: 40px;
+	height: 33px;
 	line-height: 20px;
 	padding: 0 10px;
+	border-radius: 4px 0px 0px 4px;
 }
 #search .btn-lg {
 	font-size: 15px;
 	line-height: 18px;
-	padding: 10px 35px;
 	text-shadow: 0 1px 0 #FFF;
 }
 /* cart */
@@ -226,8 +226,13 @@ div.required .control-label:before {
 	clear: both;
 	line-height: 20px;
 	color: #333333;
-	font-size: 12px;
+	font-size: 14px;
+	text-transform: lowercase;
 }
+#menu .dropdown-inner a:first-letter{
+	text-transform: uppercase;
+}
+
 #menu .dropdown-inner li a:hover {
 	color: #FFFFFF;
 }
@@ -1007,5 +1012,10 @@ h2.price {
 	font-weight: 700;
 	color: #FFFF00;
 	vertical-align: middle;
+}
+
+.shopping-cart {
+	height: 32px;
+	border: solid 1px #ccc
 }
 
