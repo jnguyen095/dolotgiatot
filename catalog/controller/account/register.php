@@ -55,16 +55,10 @@ class ControllerAccountRegister extends Controller {
 			$data['error_warning'] = '';
 		}
 
-		if (isset($this->error['firstname'])) {
-			$data['error_firstname'] = $this->error['firstname'];
+		if (isset($this->error['fullname'])) {
+			$data['error_fullname'] = $this->error['fullname'];
 		} else {
-			$data['error_firstname'] = '';
-		}
-
-		if (isset($this->error['lastname'])) {
-			$data['error_lastname'] = $this->error['lastname'];
-		} else {
-			$data['error_lastname'] = '';
+			$data['error_fullname'] = '';
 		}
 
 		if (isset($this->error['email'])) {
@@ -91,12 +85,6 @@ class ControllerAccountRegister extends Controller {
 			$data['error_password'] = '';
 		}
 
-		if (isset($this->error['confirm'])) {
-			$data['error_confirm'] = $this->error['confirm'];
-		} else {
-			$data['error_confirm'] = '';
-		}
-
 		$data['action'] = $this->url->link('account/register', '', true);
 
 		$data['customer_groups'] = array();
@@ -119,16 +107,10 @@ class ControllerAccountRegister extends Controller {
 			$data['customer_group_id'] = $this->config->get('config_customer_group_id');
 		}
 
-		if (isset($this->request->post['firstname'])) {
-			$data['firstname'] = $this->request->post['firstname'];
+		if (isset($this->request->post['fullname'])) {
+			$data['fullname'] = $this->request->post['fullname'];
 		} else {
-			$data['firstname'] = '';
-		}
-
-		if (isset($this->request->post['lastname'])) {
-			$data['lastname'] = $this->request->post['lastname'];
-		} else {
-			$data['lastname'] = '';
+			$data['fullname'] = '';
 		}
 
 		if (isset($this->request->post['email'])) {
@@ -168,16 +150,10 @@ class ControllerAccountRegister extends Controller {
 			$data['password'] = '';
 		}
 
-		if (isset($this->request->post['confirm'])) {
-			$data['confirm'] = $this->request->post['confirm'];
-		} else {
-			$data['confirm'] = '';
-		}
-
 		if (isset($this->request->post['newsletter'])) {
 			$data['newsletter'] = $this->request->post['newsletter'];
 		} else {
-			$data['newsletter'] = '';
+			$data['newsletter'] = '1';
 		}
 
 		// Captcha
@@ -218,21 +194,19 @@ class ControllerAccountRegister extends Controller {
 	}
 
 	private function validate() {
-		if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
-			$this->error['firstname'] = $this->language->get('error_firstname');
+		if ((utf8_strlen(trim($this->request->post['fullname'])) < 1) || (utf8_strlen(trim($this->request->post['fullname'])) > 32)) {
+			$this->error['fullname'] = $this->language->get('error_fullname');
 		}
 
-		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
-			$this->error['lastname'] = $this->language->get('error_lastname');
-		}
+		//if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
+			// $this->error['email'] = $this->language->get('error_email');
+		//}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
-			$this->error['email'] = $this->language->get('error_email');
-		}
-
-		if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_exists');
-		}
+		if(utf8_strlen(trim($this->request->post['fullname'])) > 0){
+            if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
+                $this->error['warning'] = $this->language->get('error_exists');
+            }
+        }
 
 		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
@@ -264,9 +238,9 @@ class ControllerAccountRegister extends Controller {
 			$this->error['password'] = $this->language->get('error_password');
 		}
 
-		if ($this->request->post['confirm'] != $this->request->post['password']) {
+		/*if ($this->request->post['confirm'] != $this->request->post['password']) {
 			$this->error['confirm'] = $this->language->get('error_confirm');
-		}
+		}*/
 
 		// Captcha
 		if ($this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
