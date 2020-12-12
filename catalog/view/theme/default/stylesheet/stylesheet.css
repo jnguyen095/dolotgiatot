@@ -169,6 +169,13 @@ div.required .control-label:before {
 }
 #cart .dropdown-menu {
 	min-width: 100%;
+	background: #f9dbf9;
+}
+#cart .dropdown-menu table tr:first-child td{
+	border-top: none;
+}
+#cart .dropdown-menu table tr td{
+	border-bottom: solid 1px #e4aee4;
 }
 @media (max-width: 478px) {
 	#cart .dropdown-menu {
