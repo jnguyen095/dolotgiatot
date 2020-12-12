@@ -25,7 +25,7 @@ class ControllerAccountLogin extends Controller {
 
 			$customer_info = $this->model_account_customer->getCustomerByToken($this->request->get['token']);
 
-			if ($customer_info && $this->customer->login($customer_info['email'], '', true)) {
+			if ($customer_info && $this->customer->login($customer_info['phone'], '', true)) {
 				// Default Addresses
 				$this->load->model('account/address');
 
@@ -37,12 +37,12 @@ class ControllerAccountLogin extends Controller {
 					$this->session->data['shipping_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
 				}
 
-				$this->response->redirect($this->url->link('account/account', '', true));
+				$this->response->redirect($this->url->link('account/order', '', true));
 			}
 		}
 
 		if ($this->customer->isLogged()) {
-			$this->response->redirect($this->url->link('account/account', '', true));
+			$this->response->redirect($this->url->link('account/order', '', true));
 		}
 
 		$this->load->language('account/login');
@@ -79,7 +79,7 @@ class ControllerAccountLogin extends Controller {
 			if (isset($this->request->post['redirect']) && $this->request->post['redirect'] != $this->url->link('account/logout', '', true) && (strpos($this->request->post['redirect'], $this->config->get('config_url')) !== false || strpos($this->request->post['redirect'], $this->config->get('config_ssl')) !== false)) {
 				$this->response->redirect(str_replace('&amp;', '&', $this->request->post['redirect']));
 			} else {
-				$this->response->redirect($this->url->link('account/account', '', true));
+				$this->response->redirect($this->url->link('account/order', '', true));
 			}
 		}
 
@@ -157,26 +157,26 @@ class ControllerAccountLogin extends Controller {
 
 	protected function validate() {
 		// Check how many login attempts have been made.
-		$login_info = $this->model_account_customer->getLoginAttempts($this->request->post['email']);
+		$login_info = $this->model_account_customer->getLoginAttempts($this->request->post['phone']);
 
 		if ($login_info && ($login_info['total'] >= $this->config->get('config_login_attempts')) && strtotime('-1 hour') < strtotime($login_info['date_modified'])) {
 			$this->error['warning'] = $this->language->get('error_attempts');
 		}
 
 		// Check if customer has been approved.
-		$customer_info = $this->model_account_customer->getCustomerByEmail($this->request->post['email']);
+		$customer_info = $this->model_account_customer->getCustomerByPhone($this->request->post['phone']);
 
 		if ($customer_info && !$customer_info['status']) {
 			$this->error['warning'] = $this->language->get('error_approved');
 		}
 
 		if (!$this->error) {
-			if (!$this->customer->login($this->request->post['email'], $this->request->post['password'])) {
+			if (!$this->customer->login($this->request->post['phone'], $this->request->post['password'])) {
 				$this->error['warning'] = $this->language->get('error_login');
 
-				$this->model_account_customer->addLoginAttempt($this->request->post['email']);
+				$this->model_account_customer->addLoginAttempt($this->request->post['phone']);
 			} else {
-				$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
+				$this->model_account_customer->deleteLoginAttempts($this->request->post['phone']);
 			}
 		}
 
