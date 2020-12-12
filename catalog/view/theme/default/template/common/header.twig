@@ -52,23 +52,29 @@
 
     <div id="top-links" class="nav pull-right">
       <ul class="list-inline">
-        <li class="dropdown"><a href="{{ account }}" title="{{ text_account }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_account }}</span> <span class="caret"></span></a>
-          <ul class="dropdown-menu dropdown-menu-right">
-            {% if logged %}
-            <li><a href="{{ account }}">{{ text_account }}</a></li>
-            <li><a href="{{ order }}">{{ text_order }}</a></li>
-            <li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
-            <li><a href="{{ download }}">{{ text_download }}</a></li>
-            <li><a href="{{ logout }}">{{ text_logout }}</a></li>
-            {% else %}
-            <li><a href="{{ register }}">{{ text_register }}</a></li>
-            <li><a href="{{ login }}">{{ text_login }}</a></li>
-            {% endif %}
-          </ul>
-        </li>
-        <li><a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_wishlist }}</span></a></li>
-        <li><a href="{{ shopping_cart }}" title="{{ text_shopping_cart }}"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_shopping_cart }}</span></a></li>
-        <li><a href="{{ checkout }}" title="{{ text_checkout }}"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_checkout }}</span></a></li>
+          {% if logged %}
+            <li class="dropdown"><a href="{{ account }}" title="{{ text_account }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
+                <span class="hidden-xs hidden-sm hidden-md">
+                {% if login_fullname %}
+                  {{text_welcome}} {{login_fullname }}
+                {% else %}
+                  {{ text_account }}
+                {% endif %}
+            </span> <span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a href="{{ order }}">{{ text_order }}</a></li>
+                  <li><a href="{{ account }}">{{ text_account }}</a></li>
+                  <li><a href="{{ logout }}">{{ text_logout }}</a></li>
+              </ul>
+            </li>
+          {% else %}
+            <li><a href="{{ login }}" id="login" title="{{ text_login }}"><i class="fa fa-sign-in"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_login }}</span></a></li>
+            <li><a href="{{ register }}" id="register" title="{{ text_register }}"><i class="fa fa-user-plus"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_register }}</span></a></li>
+          {% endif %}
+        {% if logged %}
+          <li><a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_wishlist }}</span></a></li>
+          <li><a href="{{ shopping_cart }}" title="{{ text_shopping_cart }}"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_shopping_cart }}</span></a></li>
+        {% endif %}
       </ul>
     </div>
   </div>
