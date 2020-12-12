@@ -14,9 +14,12 @@ $_['text_forgotten']               = 'Quên mật khẩu';
 
 // Entry
 $_['entry_email']                  = 'Địa chỉ E-Mail:';
+$_['entry_phone']                  = 'Số điện thoại:';
 $_['entry_password']               = 'Mật khẩu:';
 
 // Error
-$_['error_login']                  = 'Lỗi: Email hoặc mật khẩu không chính xác.';
+$_['error_login']                  = 'Lỗi: Số điện thoại hoặc mật khẩu không chính xác.';
 $_['error_attempts']               = 'Cảnh báo: Tài khoản của bạn đã vượt quá số lần đăng nhập cố định. Vui lòng thử lại trong 1 giờ.';
-$_['error_approved']               = 'Thông báo: Tài khoản của bạn cần được kích hoạt trước rồi bạn mới đăng nhập được.'; 
+$_['error_approved']               = 'Thông báo: Tài khoản của bạn cần được kích hoạt trước rồi bạn mới đăng nhập được.';
+$_['text_or_register']             = 'Hoặc đăng ký tài khoản mới';
+$_['text_here']                    = ' tại đây';
