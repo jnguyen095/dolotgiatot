@@ -1,9 +1,9 @@
 <?php
 namespace Cart;
+session_start();
 class Customer {
 	private $customer_id;
-	private $firstname;
-	private $lastname;
+	private $fullname;
 	private $customer_group_id;
 	private $email;
 	private $telephone;
@@ -21,8 +21,7 @@ class Customer {
 
 			if ($customer_query->num_rows) {
 				$this->customer_id = $customer_query->row['customer_id'];
-				$this->firstname = $customer_query->row['firstname'];
-				$this->lastname = $customer_query->row['lastname'];
+				$this->fullname = $customer_query->row['fullname'];
 				$this->customer_group_id = $customer_query->row['customer_group_id'];
 				$this->email = $customer_query->row['email'];
 				$this->telephone = $customer_query->row['telephone'];
@@ -42,25 +41,24 @@ class Customer {
 		}
 	}
 
-  public function login($email, $password, $override = false) {
+  public function login($phone, $password, $override = false) {
 		if ($override) {
-			$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "' AND status = '1'");
+			$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE LOWER(telephone) = '" . $this->db->escape(utf8_strtolower($phone)) . "' AND status = '1'");
 		} else {
-			$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "' AND (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "'))))) OR password = '" . $this->db->escape(md5($password)) . "') AND status = '1'");
+			$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE LOWER(telephone) = '" . $this->db->escape(utf8_strtolower($phone)) . "' AND (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "'))))) OR password = '" . $this->db->escape(md5($password)) . "') AND status = '1'");
 		}
 
 		if ($customer_query->num_rows) {
 			$this->session->data['customer_id'] = $customer_query->row['customer_id'];
 
 			$this->customer_id = $customer_query->row['customer_id'];
-			$this->firstname = $customer_query->row['firstname'];
-			$this->lastname = $customer_query->row['lastname'];
+			$this->fullname = $customer_query->row['fullname'];
 			$this->customer_group_id = $customer_query->row['customer_group_id'];
 			$this->email = $customer_query->row['email'];
 			$this->telephone = $customer_query->row['telephone'];
 			$this->newsletter = $customer_query->row['newsletter'];
 			$this->address_id = $customer_query->row['address_id'];
-		
+
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET language_id = '" . (int)$this->config->get('config_language_id') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 
 			return true;
@@ -73,8 +71,7 @@ class Customer {
 		unset($this->session->data['customer_id']);
 
 		$this->customer_id = '';
-		$this->firstname = '';
-		$this->lastname = '';
+		$this->fullname = '';
 		$this->customer_group_id = '';
 		$this->email = '';
 		$this->telephone = '';
@@ -90,12 +87,8 @@ class Customer {
 		return $this->customer_id;
 	}
 
-	public function getFirstName() {
-		return $this->firstname;
-	}
-
-	public function getLastName() {
-		return $this->lastname;
+	public function getFullName() {
+		return $this->fullname;
 	}
 
 	public function getGroupId() {
