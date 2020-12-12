@@ -13,8 +13,7 @@ $_['text_agree']           = 'Tôi đã đọc và đồng ý với điều kho�
 
 // Entry
 $_['entry_customer_group'] = 'Nhóm khách hàng';
-$_['entry_firstname']           = 'Tên:';
-$_['entry_lastname']            = 'Họ và tên lót:';
+$_['entry_fullname']            = 'Họ và tên:';
 $_['entry_email']          = 'Địa chỉ E-Mail';
 $_['entry_telephone']           = 'Điện Thoại:';;
 $_['entry_newsletter']     = 'Đăng ký';
@@ -23,8 +22,7 @@ $_['entry_confirm']             = 'Nhập lại Mật Khẩu:';
 
 // Error
 $_['error_exists']      = 'Lỗi: E-Mail đã có người sử dụng!';
-$_['error_firstname']   = 'Tên phải từ 1 đến 32 kí tự!';
-$_['error_lastname']    = 'Họ và tên lót phải từ 1 đến 32 kí tự!';
+$_['error_fullname']    = 'Họ và tên phải từ 1 đến 32 kí tự!';
 $_['error_email']       = 'E-Mail không hợp lệ!';
 $_['error_telephone']   = 'Điện thoại phải từ 3 đến 32 kí tự!';
 $_['error_custom_field']   = '%s yêu cầu!';
