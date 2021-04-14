@@ -1025,4 +1025,10 @@ h2.price {
 	height: 32px;
 	border: solid 1px #ccc
 }
+.form-group.required label.control-label{
+	font-size: 15px;
+}
+div#product .form-group.required > div{
+	margin-left: 20px;
+}
 
