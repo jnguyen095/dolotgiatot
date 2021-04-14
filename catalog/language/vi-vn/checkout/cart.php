@@ -25,7 +25,7 @@ $_['text_trial_description']   = '%s every %d %s(s) for %d payment(s) then';
 $_['text_payment_description'] = '%s every %d %s(s) for %d payment(s)';
 $_['text_payment_cancel']      = '%s every %d %s(s) until canceled';
 
-$_['text_recipient_info']          = 'Người nhận hàng';
+$_['text_recipient_info']          = 'Thông tin người nhận hàng';
 $_['text_recipient_name']          = 'Họ tên người nhận hàng';
 $_['text_recipient_phone']         = 'Số điện thoại';
 $_['text_recipient_address']       = 'Địa chỉ';
@@ -44,4 +44,9 @@ $_['error_minimum']          = 'Số lượng đặt tối thiểu cho %s là %s
 $_['error_required']         = '%s không được bỏ trống!';	
 $_['error_product']          = 'Cảnh báo: Không có sản phẩm trong giỏ hàng của bạn!';	
 $_['error_recurring_required'] = 'Vui lòng chọn một khoản thanh toán định kỳ!';
+
+$_['entry_city']                     = 'Thành Phố:';
+$_['entry_country']                  = 'Quốc Gia:';
+$_['entry_zone']                     = 'Thành Phố:';
+$_['order_note']                     = 'Lưu ý khi giao hàng:';
 
