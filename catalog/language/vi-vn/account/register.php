@@ -21,7 +21,7 @@ $_['entry_password']            = 'Mật Khẩu:';
 $_['entry_confirm']             = 'Nhập lại Mật Khẩu:';
 
 // Error
-$_['error_exists']      = 'Lỗi: E-Mail đã có người sử dụng!';
+$_['error_exists']      = 'Lỗi: Số điện thoại đã có người sử dụng!';
 $_['error_fullname']    = 'Họ và tên phải từ 1 đến 32 kí tự!';
 $_['error_email']       = 'E-Mail không hợp lệ!';
 $_['error_telephone']   = 'Điện thoại phải từ 3 đến 32 kí tự!';
