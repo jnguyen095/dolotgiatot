@@ -1031,4 +1031,7 @@ h2.price {
 div#product .form-group.required > div{
 	margin-left: 20px;
 }
+.normal-price, .special-price{
+	color:red;
+}
 
