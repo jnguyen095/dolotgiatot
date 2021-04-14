@@ -19,4 +19,15 @@ class ModelLocalisationZone extends Model {
 
 		return $zone_data;
 	}
+
+	public function getZonesByCountryCode($countryCode){
+        $zone_data = $this->cache->get('zone.' . $countryCode);
+        if (!$zone_data) {
+            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone WHERE country_id = (select country_id from " . DB_PREFIX . "country WHERE iso_code_2 = '" . $countryCode . "') AND status = '1' ORDER BY name");
+            $zone_data = $query->rows;
+            $this->cache->set('zone.' . $countryCode, $zone_data);
+        }
+
+        return $zone_data;
+    }
 }
