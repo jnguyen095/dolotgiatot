@@ -78,7 +78,7 @@ class ModelCustomerCustomer extends Model {
 	}
 	
 	public function getCustomers($data = array()) {
-		$sql = "SELECT *, CONCAT(c.firstname, ' ', c.lastname) AS name, cgd.name AS customer_group FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id)";
+		$sql = "SELECT *, c.fullname AS name, cgd.name AS customer_group FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id)";
 		
 		if (!empty($data['filter_affiliate'])) {
 			$sql .= " LEFT JOIN " . DB_PREFIX . "customer_affiliate ca ON (c.customer_id = ca.customer_id)";
@@ -89,7 +89,7 @@ class ModelCustomerCustomer extends Model {
 		$implode = array();
 
 		if (!empty($data['filter_name'])) {
-			$implode[] = "CONCAT(c.firstname, ' ', c.lastname) LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+			$implode[] = "c.fullname LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
 		}
 
 		if (!empty($data['filter_email'])) {
@@ -136,7 +136,7 @@ class ModelCustomerCustomer extends Model {
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
-			$sql .= " ORDER BY name";
+			$sql .= " ORDER BY fullname";
 		}
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {
@@ -156,7 +156,6 @@ class ModelCustomerCustomer extends Model {
 
 			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
 		}
-
 		$query = $this->db->query($sql);
 
 		return $query->rows;
